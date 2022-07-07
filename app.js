@@ -1,5 +1,13 @@
 import {fetchMovieAvailability,fetchMovieList} from "./api.js"
 
+function loaderAdd(){
+    let main = document.getElementsByTagName('main');
+    let h2 = document.createElement('h2');
+    h2.id = 'loader';
+    h2.innerText = 'Loading ....';
+    main[0].append(h2);
+}
+loaderAdd();
 fetchMovieList()
     .then(value => appendMovies(value))
     .catch(()=> console.log("Errror...."));
@@ -10,11 +18,18 @@ function appendMovies(movieList){
     mList = {...movieList};
     document.getElementById("loader").remove();
     // console.log(movieList);
+
+    let mholder = document.createElement('div');
+    mholder.className = 'movie-holder';
+    mholder.id = 'movie';
+    let main = document.getElementsByTagName('main');
+    main[0].appendChild(mholder);
+
     let movieBlock = document.getElementById("movie");
     let x = "";   //href="/"
     movieList.forEach(e => {
         x += `<a class="movie-link" > 
-                <div class="movie" data-id="moviename"> 
+                <div class="movie" data-id="${e.name}"> 
                     <div class="movie-img-wrapper" style="background-image: url(${e.imgUrl});"></div>
                     <h4 id="movieName">${e.name}</h4> 
                 </div> 
@@ -23,10 +38,11 @@ function appendMovies(movieList){
     movieBlock.innerHTML = x;
 }
 
-document.getElementById("movie").addEventListener('click', myFunc); // on click of movie tile loader should appear
+document.getElementsByTagName("main")[0].addEventListener('click', myFunc); // on click of movie tile loader should appear
 // checking for available seats for this movie
 function myFunc(e){
     // console.log(e.target.nextElementSibling.innerText);
+    console.log(e);
     let movie = e.target.nextElementSibling.innerText;
     let bookArea = document.getElementById('booker');
     // let loader = `<h2 id="loader2" class="s-none">Loading...</h2>`;
@@ -100,7 +116,7 @@ function addSelection(event){
         if(event.target.classList[2]){
             event.target.classList.remove('selected-seat');
             let list = document.getElementsByClassName('selected-seat');
-            console.log(list);
+            // console.log(list);
             if(list.length == 0){
                 document.getElementById('book-ticket-btn').setAttribute('class', 'v-none');
             }
