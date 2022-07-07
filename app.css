@@ -14,11 +14,12 @@ nav{
 
 nav ul{
     display: flex;
-    column-gap: 200px;
+    justify-content: space-evenly;
 }
 
 nav li{
     list-style: none;
+    margin-right: 100px;
 }
 
 h2{
