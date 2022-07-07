@@ -137,14 +137,14 @@ function conformationForm(){
     }
     let formAppend = `<div id="confirm-purchase">
                         <h3>Confirm your booking for seat numbers:${seats.join(",")}</h3>
-                    </div>
-                    <form id="customer-detail-form">
-                    <label for="email">Email</label>
-                    <input type="email" required><br>
-                    <label for="phone">Phone number</label>
-                    <input type="tel" name="phone" required><br>
-                    <button type="submit">Purchase</button>
-                    </form>`;
+                        <form id="customer-detail-form">
+                        <label for="email">Email</label>
+                        <input type="email" required><br>
+                        <label for="phone">Phone number</label>
+                        <input type="tel" name="phone" required><br>
+                        <button type="submit">Purchase</button>
+                        </form>
+                    </div>`;
     document.getElementById("booker").innerHTML = formAppend; // form appended
 }
 
